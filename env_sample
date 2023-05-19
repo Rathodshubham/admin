@@ -1,0 +1,28 @@
+VUE_APP_SERVER_URL= "https://server.studiumtech.in/"
+VUE_APP_API_PORT= "inprospect"
+VUE_APP_SOCKET_PORT= ""
+VUE_APP_SERVER_V3_URL= "https://server.studiumtech.in"
+
+# # Inprospect Config
+# VUE_APP_LOGINPAGE_LOGO=inprospect.png
+# VUE_APP_FOOTER_LOGO=inprospect.png
+# VUE_APP_FOOTER_TITLE=Inprospect Technologies Pvt Ltd
+# VUE_APP_SITE_TITLE=Inprospect Faculty Portal
+# VUE_APP_FAVICON=favicon-inprospect.ico
+
+# # Eklavya Config
+# VUE_APP_LOGINPAGE_LOGO=eklavya-login.png
+# VUE_APP_FOOTER_LOGO=eklavya-footer.png
+# VUE_APP_FOOTER_TITLE=Splashgain Technology Solutions Pvt Ltd
+# VUE_APP_SITE_TITLE=Eklavya LMS
+# VUE_APP_FAVICON=favicon-eklavya.png
+
+# Neuropod Config
+VUE_APP_LOGINPAGE_LOGO=studium.png
+VUE_APP_FOOTER_LOGO=studium.png
+VUE_APP_FOOTER_TITLE=Studium Tech Pvt Ltd
+VUE_APP_SITE_TITLE=The Studium | Faculty
+VUE_APP_FAVICON=favicon-studium.png
+
+VUE_APP_SPACES_NAME=mediainprospect
+VUE_APP_SPACES_URL=sfo3.digitaloceanspaces.com

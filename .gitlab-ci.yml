@@ -1,0 +1,70 @@
+image: ubuntu:latest
+cache:
+  paths:
+    - .apt
+    - node_modules
+
+stage_deploy_godaddy:
+  stage: deploy
+  environment: production
+  before_script:
+    - apt-get update -y
+    - apt-get -o dir::cache::archives=".apt"apt-get install sudo curl sshpass -y
+    - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+    - sudo apt-get install -y nodejs
+    #- curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    #- echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    #- apt-get update -y
+    #- sudo apt-get install --no-install-recommends yarn --allow-unauthenticated -y
+    - node -v
+    #- yarn --version
+    - sshpass -V
+    - npm install
+  script:
+    #- yarn
+    #- yarn build
+    - npm run build:test
+
+  after_script:
+    - cd dist/
+    - ls
+    - export SSHPASS=$USER_PASS
+    - sshpass -e scp -o stricthostkeychecking=no -r ./* $USER_NAME@$HOST:~/public_html/testadmin.inprospecttechnologies.in/
+  artifacts:
+    paths:
+      - dist
+  only:
+    - qa
+
+prod_deploy_godaddy:
+  stage: deploy
+  environment: production
+  before_script:
+    - apt-get update -y
+    - apt-get -o dir::cache::archives=".apt"apt-get install sudo curl sshpass -y
+    - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+    - sudo apt-get install -y nodejs
+    #- curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    #- echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    #- apt-get update -y
+    #- sudo apt-get install --no-install-recommends yarn --allow-unauthenticated -y
+    - node -v
+    #- yarn --version
+    - sshpass -V
+    - npm install
+  script:
+    #- yarn
+    #- yarn build
+    - npm run build:production
+
+  after_script:
+    - cd dist/
+    - ls
+    - export SSHPASS=$USER_PASS
+    - sshpass -e scp -o stricthostkeychecking=no -r ./* $USER_NAME@$HOST:~/public_html/admin.inprospecttechnologies.in/
+  artifacts:
+    paths:
+      - dist
+  only:
+    - production
+
